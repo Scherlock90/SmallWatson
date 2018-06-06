@@ -32,13 +32,18 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					PlatWych window = new PlatWych();
 					window.frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -48,8 +53,12 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 	/**
 	 * Create the application.
 	 */
-	public PlatWych() {
+	public PlatWych() 
+	{
 		initialize();
+		
+		WindowListener sluchacz = new zamykanieApki();
+		this.addWindowListener(sluchacz);
 	}
 
 	/**
@@ -58,20 +67,24 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 	String wychowawcyProwadzacy = new String ("Pryzmont");
 	
 	
-	private void initialize() {
+	private void initialize() 
+	{
 		frame = new JFrame("Platforma Wychowania");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new zamykanieApki());
+		
 				
 		
 		JToolBar toolBar = new JToolBar();
 		
 		JButton bWychowawcy = new JButton("Wychowawcy");
-		bWychowawcy.addActionListener(new ActionListener() {
+		bWychowawcy.addActionListener(new ActionListener() 
+		{
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				Object source = e.getSource();
 				
 				if(source == bWychowawcy)
@@ -82,10 +95,6 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 			}
 			
 		});
-		
-		
-//		WindowListener sluchacz = new zamykanieApki();
-//        this.addWindowListener(sluchacz);
                         
 		JButton Wyloguj = new JButton("Wyloguj");
 		Wyloguj.addActionListener(new ActionListener() 
@@ -101,10 +110,12 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 		});
 		
 		JButton Wychowankowie = new JButton("Wychowankowie");
-		Wychowankowie.addActionListener(new ActionListener() {
+		Wychowankowie.addActionListener(new ActionListener() 
+		{
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) 
+			{
 				try {
 					new Wychowankowie().setVisible(true);
 				} catch (Exception e1) {
@@ -117,23 +128,11 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 		
 		textField = new JTextField();
 		textField.setVisible(false);
-//		textField.addActionListener(new ActionListener() 
-//		{
-//			public void actionPerformed(ActionEvent arg0) 
-//			{
-//				
-//			}
-//		});
 		textField.setColumns(10);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setVisible(false);
-		
-		
-		
-		
-		
-		// --------------------------------------------------------
+
 		ActionListener stoper = new Zegar1();
 		Timer zegar = new Timer(1000, stoper);
 		zegar.start();
@@ -143,8 +142,6 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 		JButton btnKalendarz = new JButton("Kalendarz");
 		
 		JButton btnAdministracja = new JButton("Administracja");
-		
-		
 		
 		//---------------------------------------------------------
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
@@ -219,12 +216,9 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 			{
 				System.exit(0);
 			}
-		}
-		
-		
+		}		
 	}
-	
-	
+		
 	JLabel lZegarek = new JLabel("Zegarek: ");
 	JLabel lCzas = new JLabel(pobierzCzasInterface());
 	
@@ -232,14 +226,9 @@ public class PlatWych extends JFrame implements pobierzCzasDoZegarka
 	{
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			
+		public void actionPerformed(ActionEvent e) 
+		{	
 			lCzas.setText(pobierzCzasInterface());
-			//System.out.println(iI++);
-			
-			
-			//lCzas.setText("" + h + ":" + min + ":" + sec + "\n" +" Mamy:  " + dzienTegoRoku + " dzień tego roku." );
-			
 		}		
 	}
 }

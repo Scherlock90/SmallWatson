@@ -22,7 +22,7 @@ public class RamkaWylaczania extends JDialog {
 	public static void main(String[] args) {
 		try {
 			RamkaWylaczania dialog = new RamkaWylaczania();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,11 +75,10 @@ public class RamkaWylaczania extends JDialog {
 						Object source = e.getSource();
 						if (source == cancelButton)
 						{
-							JOptionPane.getRootFrame().dispose();
+							System.exit(DO_NOTHING_ON_CLOSE);;
 						}
 					}
 				});
-				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}

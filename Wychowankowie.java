@@ -54,7 +54,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormSpecs;
 import com.jgoodies.forms.layout.RowSpec;
 
-public class Wychowankowie extends JDialog implements pobierzCzasDoZegarka
+public class Wychowankowie extends JDialog implements pobierzCzasDoZegarka, wylaczanieOkna
 {
 
 	private JPanel contentPane;
@@ -84,24 +84,20 @@ public class Wychowankowie extends JDialog implements pobierzCzasDoZegarka
 	
 	public Wychowankowie() throws Exception 
 	{
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 492, 326);
 		contentPane = new JPanel();
 		contentPane.setBorder(UIManager.getBorder("OptionPane.border"));
 		setContentPane(contentPane);
 		this.setTitle("Wychowankowie");
-		//contentPane.setLayout((LayoutManager) new SpringLayout.Constraints());
-		
-		
+	
+		WindowListener sluchaczWychowankowie = new wylaczanieOkna.zamykanieOkien();
+		this.addWindowListener(sluchaczWychowankowie);
 	
 					File f = new File("C:\\Users\\Lenovo\\Desktop\\wychowankowie.txt");
 					Properties props = new Properties();
 					InputStream is = new FileInputStream(f);
 					props.load(is);
-					
-					//System.out.print(props);	//w consoli się wówczas pokazuje
-					
-					
 					
 			scrollWychowankowie.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			scrollWychowankowie.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -204,24 +200,17 @@ public class Wychowankowie extends JDialog implements pobierzCzasDoZegarka
 					{
 						public void actionPerformed(ActionEvent e) 
 						{
-							Object source = e.getSource();
-							
-							if (source == bWroc)
-							{
-								new RamkaWylaczania().setVisible(true);
-							}
+							dispose();
 						}
 					});
 			
 			
 					ActionListener stoper = new ZegarCzasowy();
 					Timer zegarek = new Timer(1000, stoper);
-					zegarek.start();
-		
-		
+					zegarek.start();	
 	}
 
-	JLabel lCzasu = new JLabel(pobierzCzasInterface());	//poprzez dodanie interfajsu 
+	JLabel lCzasu = new JLabel(pobierzCzasInterface());	
 	private JTable tablicaWychowankow;
 	
 	
@@ -231,29 +220,6 @@ public class Wychowankowie extends JDialog implements pobierzCzasDoZegarka
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-//			GregorianCalendar kalendarium = new GregorianCalendar();
-//			String h = "" + kalendarium.get(Calendar.HOUR_OF_DAY);
-//			String min = "" +kalendarium.get(Calendar.MINUTE);
-//			String sec = "" + kalendarium.get(Calendar.SECOND);
-//			String dzienTegoRoku = "" + kalendarium.get(Calendar.DAY_OF_YEAR);
-//			
-//			
-//			if(Integer.parseInt(h) < 10)
-//			{
-//				h = "0" + h;
-//			}
-//			if(Integer.parseInt(min) < 10)
-//			{
-//				min = "0" + min;
-//			}
-//			if(Integer.parseInt(sec) < 10)
-//			{
-//				sec = "0" + sec;
-//			}
-//			
-//			
-//			lCzasu.setText("" + h + ":" + min + ":" + sec +"  Mamy:  " + dzienTegoRoku + " dzień tego roku." );
-//			lCzasu.getText();
 			lCzasu.setText(pobierzCzasInterface());
 		}
 		

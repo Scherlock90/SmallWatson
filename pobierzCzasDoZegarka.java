@@ -25,6 +25,6 @@ public interface pobierzCzasDoZegarka
 		{
 			sec = "0" + sec;
 		}
-		return h + " : " + min +" : " + sec + "  Dzień " + dzienTegoRoku + " dzień tego roku.";
+		return h + ":" + min +":" + sec + "  Dzień: " + dzienTegoRoku + " dzień tego roku.";
 	};
 }

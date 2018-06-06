@@ -1,7 +1,9 @@
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -18,7 +20,8 @@ import javax.swing.border.EmptyBorder;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import javax.swing.JTextArea;
 
-public class Wychowawcy extends JDialog implements pobierzCzasDoZegarka {
+public class Wychowawcy extends JFrame implements pobierzCzasDoZegarka, wylaczanieOkna
+{
 
 	private JPanel contentPane;	
 
@@ -46,12 +49,14 @@ public class Wychowawcy extends JDialog implements pobierzCzasDoZegarka {
 	
 	public Wychowawcy() 
 	{
-		
-		ActionListener stoper = new Zegar12();		//poprzez klasę można dodać czas
+		WindowListener sluchaczWychowawcy = new wylaczanieOkna.zamykanieOkien();
+		this.addWindowListener(sluchaczWychowawcy);
+
+		ActionListener stoper = new Zegar12();	
 		Timer zegar12 = new Timer(1000, stoper);
 		zegar12.start();
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -60,18 +65,16 @@ public class Wychowawcy extends JDialog implements pobierzCzasDoZegarka {
 		this.setTitle("Wychowawcy prowadzący");
 		
 		JButton bWroc = new JButton("Wróć");
-		bWroc.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				Object source = e.getSource();
-				
-				if(source == bWroc)
+		bWroc.addActionListener(new ActionListener()
 				{
-					new RamkaWylaczania().setVisible(true);
-				}
-			}
-		});
+					@Override
+					public void actionPerformed(ActionEvent e) 
+					{
+						dispose();
+					}
+			
+				});
+
 		bWroc.setBounds(335, 227, 89, 23);
 		contentPane.add(bWroc);
 		
@@ -128,21 +131,14 @@ public class Wychowawcy extends JDialog implements pobierzCzasDoZegarka {
 		contentPane.add(btnKalendarz);
 		contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{bWroc, btnPryzmont, btnRzepko, btnNapora, btnGrochowska, btnAndrukiewicz, btnZieziulewicz}));
 	}
-
-
+	
 	JLabel lblCzas = new JLabel();
-	
-	
+		
 	private class Zegar12 implements ActionListener
 	{
-		//JLabel lZegarek = new JLabel("Zegarek: ");
-		//JLabel lCzas = new JLabel();
-		
-		@Override		//można poprzez clasę dodać zegarek
+		@Override		
 		public void actionPerformed(ActionEvent e) 
 		{
-			
-			//System.out.println(iI++);
 			GregorianCalendar kalendarz = new GregorianCalendar();
 			
 			String h = "" + kalendarz.get(Calendar.HOUR_OF_DAY);
@@ -163,7 +159,6 @@ public class Wychowawcy extends JDialog implements pobierzCzasDoZegarka {
 			{
 				sec = "0" + sec;
 			}
-			
 			
 			lblCzas.setText("" + h + ":" + min + ":" + sec + "\n" +" Mamy:  " + dzienTegoRoku + " dzień.");
 			lblCzas.getText();
