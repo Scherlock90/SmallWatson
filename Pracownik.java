@@ -11,7 +11,4 @@ public class Pracownik extends Klasa_Object implements auto_podstawa {
 		{
 			return czasPracy;
 		}
-		
-		
-	
 }
