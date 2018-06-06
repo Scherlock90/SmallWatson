@@ -3,33 +3,33 @@ package dziedziczenie;
 import java.util.Arrays;
 import java.util.Collections;
 
-public abstract class Auta {		//tutaj dodalismy keyword abstract umozliwia on wówczas tworzenie metod abstrakcyjnych do dziedziczenia w innych klasach
-
-	protected double predkosc = 10;		//modyfikator dostępu protected uniemozliwia korzystania z własciwosci czy metod przez inne pakunki o ile nie zostana rozszerzone o tą klasę w której jest protected
+public abstract class Auta {		
+	
+	protected double predkosc = 10;		
 	protected double koszt = 10000;
 		
-	public Auta()			//domyślny konstruktor klasy Auta 
+	public Auta()			
 	{
 		
 	}
-	public Auta(double predkosc, double koszt)		//niedomyślny konstruktor klasy Auta, w którym zawieramy instrukcje.
+	public Auta(double predkosc, double koszt)	
 	{
 		this.predkosc = predkosc;
 		this.koszt = koszt;
 		
 	}
 	
-		double getPredkosc()		// tutaj do czego będzie zwracana wartość double predkosc - return istotne!
+		double getPredkosc()		
 		{
 			return predkosc;
 		}
 		
-		double getKoszt()			// tutaj do czego będzie zwracana wartość double koszt - return istotne!
+		double getKoszt()			
 		{
 			return koszt;
 		}
 	
-			public void predkoscAuta(int czas)		//metoda do której możemy się odnieść.
+			public void predkoscAuta(int czas)		
 			{
 				if(czas > 50)
 				{
@@ -46,7 +46,7 @@ public abstract class Auta {		//tutaj dodalismy keyword abstract umozliwia on w�
 				}
 			}
 		
-			public void kosztAuta(int rocznik)		//gdybym tu dał private na początku wówczas w innych klasach nie było by do tego dostępu, tylko w tej
+			public void kosztAuta(int rocznik)		
 			{
 				if (rocznik < 2015)
 				{
@@ -61,8 +61,8 @@ public abstract class Auta {		//tutaj dodalismy keyword abstract umozliwia on w�
 				}
 			}
 		// TODO Auto-generated method stub
-			protected abstract void opis();		//abtract i protected jest potrzebne, ale abstract powoduje, że w innych klasach..
-												//...mozna dodawać instrukcje bez wpisywania jej w klasie ogólnej dziedziczonej. Tutaj nie musimy nic pisać ani dodawać to jest plus.	//jest dziedziczona przez wszystkie klasy
+			protected abstract void opis();		
+			
 	public static void main(String[] args) {
 
 		Auta [] tablicaAut = new Auta[4];
@@ -87,11 +87,11 @@ public abstract class Auta {		//tutaj dodalismy keyword abstract umozliwia on w�
 			System.out.println(aT.getPredkosc());
 		}
 		
+		// If you want use Abstarct Class
+		//Auta aA = new Auta();		
+		// Auta aA = new Porshe();  
 		
-		//Auta aA = new Auta();		//stworzenie nowego obiektu (aA) z klasy Auta //ten obiekt nie działa przy klasie abstrakcyjnej
-		// Auta aA = new Porshe();  // stworzenie nowego obiektu (aA) z klasy Porshe, dzięki czemu teraz odnosić można się do obu klas...
-									//...tzn, do klasy Auta i klasy Porshe jednocześnie === polimorfizm.
-		Auta aA = new Porshe();		//ten obiekt działą przy klasie abstrakcyjnej
+		Auta aA = new Porshe();		
 		aA.getKoszt();
 		aA.getPredkosc();
 		aA.kosztAuta(2017);
