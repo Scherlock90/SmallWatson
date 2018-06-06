@@ -1,16 +1,16 @@
 package zagniezdzenieKlas;
 
-public class Klasy_zagniezdzane {
+public class Klasy_zagniezdzane 
+{
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) 
+	{
+				
+		A zewnetrzna = new A();		
 		
-		A zewnetrzna = new A();		//w końcu załapałem konstrukcję tego :D new A() to jest odniesienie do konstruktora( A() )  z klasy A
+		A.B zagniezdzona = zewnetrzna.new B();	
 		
-		A.B zagniezdzona = zewnetrzna.new B();	// konstrukcja jest taka, że odnosimy się do klasy zewnętrznej pierw, następnie do klasy zagnieżdzonej...
-												// ...potem jest stworzony konstruktor zagniezdzony w oparciu o zmienną z klasy zewnętrznej
-		A.C zagniezdzonaStatyczna = new A.C();	// ze statycznymy jest podobnie poza tym, że nie trzeba się odnosić do zmiennej z klasy zewnętrznej
-		
+		A.C zagniezdzonaStatyczna = new A.C();	
 		
 		zewnetrzna.cos();
 		zagniezdzona.cos2();
@@ -43,16 +43,16 @@ class A
 			System.out.println("takie tam cos 2 z klasy zagniezdzonej B + spradzian " + sprawdzian);
 		}
 	}
-	static class C			//statyczna klasa uniemozliwia do niej dostep klasom zewnętrznym
+	static class C			
 	{
-		private static int sprawdzianStatycznej;	//zmienna statyczna do uzytku klasy statycznej
+		private static int sprawdzianStatycznej;	
 		C()
 		{
 			System.out.println("Klasa zagniezdzona statyczna C");
 		}
 		static void cos3()
 		{
-			sprawdzianStatycznej = 999;	//jedynie w tej metodzie mozna sie odnieść się do zmiennej statycznej
+			sprawdzianStatycznej = 999;	
 			System.out.println("takie cos ze statycznej zagniezdzonej C + spradzian " + sprawdzianStatycznej);
 		}
 	}
