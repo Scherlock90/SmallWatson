@@ -10,8 +10,8 @@ public class człowiek extends InstaceOf {
 		}
 		człowiek(String imie, String nazwisko, String płeć)
 		{
-			super(imie, nazwisko);		//jeżeli jest super to odnosimy się do tych parametrów, które są w bazowej clasie ujęte a nie dodajemy kolejnego z obecnej klasy
-			this.płeć = płeć;			//ponieważ dodaliśmy parametr płeć to nie dodajemy go do clasy super w powyższej linijce
+			super(imie, nazwisko);		
+			this.płeć = płeć;			
 		}
 		
 		public void opisIstoty()
