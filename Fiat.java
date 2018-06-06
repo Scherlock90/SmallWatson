@@ -1,20 +1,19 @@
 package dziedziczonkoProtected_modyfikator;
-import dziedziczenie.Auta;		//aby w innym pakunku korzystać z zawartości innego package wówczas musimy importować go tutaj
+import dziedziczenie.Auta;		
 
-public class Fiat extends Auta {		//dzięki extends mam dostep do klasy Auta, bo taką wybraliśmy i do jej zawartości o ile nie jest ona private
+public class Fiat extends Auta {		
 	
 	public void fiacik()
 	{
-		this.predkosc = 0;		//tu odniosłem się do właściwości (protected) prędkości z klasy Auta zawartej w pakunku dziedzienie
+		this.predkosc = 0;		
 	}
 	@Override
 	protected void opis()
 	{
-		
+		System.out.println("Class use protected mod");
 	}
 }
 
 
 
 
-//Ta klasa powstała wyłącznie by zobaczyć jak można używać modyfikatora protected i jak można połączyć import, extends z innego pakunku i klasy
